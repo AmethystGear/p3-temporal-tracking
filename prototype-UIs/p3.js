@@ -15,7 +15,7 @@ $(document).ready(function(){
             
             $("#body").append(image);
         }
-    }    
+    }
 
     zoomCtx = document.getElementById("zoomArea").getContext("2d");
 });
@@ -41,5 +41,5 @@ function zoomHandler(e){
 }
 
 function deleteSelf(_this){
-    _this.remove();
+    _this.parentNode.remove();
 }
