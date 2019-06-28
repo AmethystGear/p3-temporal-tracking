@@ -8,8 +8,8 @@ $(document).ready(function(){
             currentImageId = id;
             let source = "..\\temporal-tracking-photos\\" + id + ".png";
             let image = 
-                    "<div style = 'max-width: 100%; height: 220px; position:relative;'>" + 
-                        "<img class = 'coveredImage'  id = '" + id + "' src= '" + source + "' onerror='deleteSelf(this)' onmousemove='zoomHandler(event)'/>" +
+                    "<div style = 'max-width: 100%; height: 220px; position:relative;' onmousemove='zoomHandler(event)'>" + 
+                        "<img class = 'coveredImage'  id = '" + id + "' src= '" + source + "' onerror='deleteSelf(this)'/>" +
                         "<canvas class = 'coveringCanvas' id = '" + id + "canvas'></canvas>" +
                     "</div>"
             
@@ -21,10 +21,11 @@ $(document).ready(function(){
 });
 
 function zoomHandler(e){  
+    var image = $(e.target).children('img')[0];
     //getting the x,y of the mouse  
-    let factorX =  e.target.naturalWidth / e.target.width;
-    let factorY = e.target.naturalHeight/ e.target.height;
-    var rect = e.target.getBoundingClientRect();
+    let factorX =  image.naturalWidth / image.width;
+    let factorY = image.naturalHeight/ image.height;
+    var rect = image.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
 
@@ -37,7 +38,7 @@ function zoomHandler(e){
     canvasCtx.fill();
 
     //drawing zoomed image at the top
-    zoomCtx.drawImage(e.target, x * factorX, y * factorY, 100, 100, 0, 0, 300, 300);
+    zoomCtx.drawImage(image, x * factorX, y * factorY, 100, 100, 0, 0, 300, 300);
 }
 
 function deleteSelf(_this){
