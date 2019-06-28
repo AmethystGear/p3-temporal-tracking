@@ -13,5 +13,5 @@ $(document).ready(function(){
 });
 
 function deleteSelf(_this){
-    _this.style.visibility = 'hidden';
+    _this.remove();
 }
