@@ -6,12 +6,12 @@ $(document).ready(function(){
             let id = i + (i1 % 2 == 1 ? "b" : "");    
             currentImageId = id;   
             let source = "..\\temporal-tracking-photos\\" + id + ".png";
-            let html = "<img id = '" + id + "' src= '" + source + "' onError='deleteSelf()'/>"        
+            let html = "<img id = '" + id + "' src= '" + source + "' onError='deleteSelf(this)'/>"        
             $("#body").append(html);
         }
     }
 });
 
-function deleteSelf(){
-    $("#" + currentImageId).remove();
+function deleteSelf(_this){
+    _this.style.visibility = 'hidden';
 }
