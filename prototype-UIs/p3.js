@@ -17,9 +17,9 @@ $(document).ready(function(){
 });
 
 function zoomHandler(e){    
-    let factorX = this.width / this.naturalWidth;
-    let factorY = this.height / this.naturalHeight;
-    ctx.drawImage(this, e.clientX / factorX, e.clientY /factorY, 100, 100, 0, 0, 100, 100);
+    let factorX =  e.target.naturalWidth / e.target.width;
+    let factorY = e.target.naturalHeight/ e.target.height;
+    ctx.drawImage(e.target, e.clientX / factorX, e.clientY / factorY, 100, 100, 0, 0, 100, 100);
 }
 
 function deleteSelf(_this){
