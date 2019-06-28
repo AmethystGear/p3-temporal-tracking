@@ -7,7 +7,7 @@ $(document).ready(function(){
             let id = i + (i1 % 2 == 1 ? "b" : "");    
             currentImageId = id;
             let source = "..\\temporal-tracking-photos\\" + id + ".png";
-            let html = "<img style = 'max-width: 100%; max-height: 200px; overflow: hidden;' id = '" + id + "' src= '" + source + "' onerror='deleteSelf(this)' onmousemove='zoomHandler(event)' onmouseover = 'setImg(this)'/>"        
+            let html = "<img style = 'max-width: 100%; max-height: 200px; overflow: hidden;' id = '" + id + "' src= '" + source + "' onerror='deleteSelf(this)' onmousemove='zoomHandler(event)'/>"        
             $("#body").append(html);
         }
     }
