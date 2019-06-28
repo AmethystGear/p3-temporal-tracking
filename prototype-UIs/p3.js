@@ -20,8 +20,8 @@ function setImg(this){
 }
 
 function zoomHandler(e){    
-    let factorX =  currentImage.naturalWidth / currentImage.width;
-    let factorY = currentImage.naturalHeight/ currentImage.height;
+    let factorX =  e.target.naturalWidth / e.target.width;
+    let factorY = e.target.naturalHeight/ e.target.height;
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
