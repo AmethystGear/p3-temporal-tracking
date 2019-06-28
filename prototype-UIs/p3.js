@@ -19,7 +19,7 @@ $(document).ready(function(){
 function zoomHandler(e){    
     let factorX =  e.target.naturalWidth / e.target.width;
     let factorY = e.target.naturalHeight/ e.target.height;
-    ctx.drawImage(e.target, e.clientX / factorX, e.clientY / factorY, 100, 100, 0, 0, 100, 100);
+    ctx.drawImage(e.target, e.clientX * factorX, e.clientY * factorY, 100, 100, 0, 0, 300, 300);
 }
 
 function deleteSelf(_this){
