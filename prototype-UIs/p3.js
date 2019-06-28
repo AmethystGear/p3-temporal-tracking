@@ -20,7 +20,7 @@ function zoomHandler(e){
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
-    ctx.drawImage(currentImage, x * factorX, y * factorY, 100, 100, 0, 0, 300, 300);
+    ctx.drawImage(e.target, x * factorX, y * factorY, 100, 100, 0, 0, 300, 300);
 }
 
 function deleteSelf(_this){
