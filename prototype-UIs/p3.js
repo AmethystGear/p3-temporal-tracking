@@ -22,7 +22,10 @@ function setImg(this){
 function zoomHandler(e){    
     let factorX =  currentImage.naturalWidth / currentImage.width;
     let factorY = currentImage.naturalHeight/ currentImage.height;
-    ctx.drawImage(currentImage, e.clientX * factorX, e.clientY * factorY, 100, 100, 0, 0, 300, 300);
+    var rect = e.target.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    ctx.drawImage(currentImage, x * factorX, y * factorY, 100, 100, 0, 0, 300, 300);
 }
 
 function deleteSelf(_this){
