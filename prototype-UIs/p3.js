@@ -1,14 +1,16 @@
+let currentImageId = "";
 $(document).ready(function(){
     for(let i = 2020; i > 2000; i--){
-        let source = "..\\temporal-tracking-photos\\" + i + ".png";
-        let html = "<img src= '" + source + "' onError='deleteSelf(this);'/>"
-
-        $("#body").append(html);
-        console.log(source);
+        for(let i1 = 0; i1 < 2; i1++){
+            //check for the b as well.           
+            let id = i + i1 % 2 == 1 ? "b" : "";       
+            let source = "..\\temporal-tracking-photos\\" + id + ".png";
+            let html = "<img id = '" + id + "' src= '" + source + "' onError='deleteSelf()'/>"        
+            $("#body").append(html);
+        }
     }
 });
 
-function deleteSelf(_this){
-    console.log("removed myself");
-    ($_this).remove();
+function deleteSelf(){
+    $("#" + currentImageId).remove();
 }
