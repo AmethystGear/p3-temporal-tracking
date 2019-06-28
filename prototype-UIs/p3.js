@@ -30,7 +30,7 @@ function zoomHandler(e){
     var y = e.clientY - rect.top;
 
     //drawing visual indicator of zoom
-    let canvasCtx = document.getElementById(c.target.id + "canvas").getContext("2d");
+    let canvasCtx = document.getElementById(image.id + "canvas").getContext("2d");
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
     canvasCtx.globalAlpha = 0.2;
     canvasCtx.fillStyle = "blue";
