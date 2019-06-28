@@ -16,10 +16,10 @@ $(document).ready(function(){
     ctx = document.getElementById("zoomArea").getContext("2d");
 });
 
-function zoomHandler(e){
-    let factorX = e.target.width / e.target.naturalWidth;
-    let factorY = e.target.height / e.target.naturalHeight;
-    ctx.drawImage(e.srcElement, e.clientX / factorX, e.clientY /factorY, 100, 100, 0, 0, 100, 100);
+function zoomHandler(e){    
+    let factorX = this.width / this.naturalWidth;
+    let factorY = this.height / this.naturalHeight;
+    ctx.drawImage(this, e.clientX / factorX, e.clientY /factorY, 100, 100, 0, 0, 100, 100);
 }
 
 function deleteSelf(_this){
