@@ -6,7 +6,7 @@ $(document).ready(function(){
             let id = i + (i1 % 2 == 1 ? "b" : "");    
             currentImageId = id;   
             let source = "..\\temporal-tracking-photos\\" + id + ".png";
-            let html = "<img id = '" + id + "' src= '" + source + "' onError='deleteSelf(this)'/>"        
+            let html = "<img class = 'gsv' id = '" + id + "' src= '" + source + "' onError='deleteSelf(this)'/>"        
             $("#body").append(html);
         }
     }
