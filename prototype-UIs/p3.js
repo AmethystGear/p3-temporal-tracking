@@ -8,7 +8,7 @@ $(document).ready(function(){
             currentImageId = id;
             let source = "..\\temporal-tracking-photos\\" + id + ".png";
             let image = 
-                    "<div style = 'max-width: 100%; overflow: auto; position:relative;'>" + 
+                    "<div style = 'max-width: 100%; position:relative;'>" + 
                         "<img class = 'coveredImage'  id = '" + id + "' src= '" + source + "' onerror='deleteSelf(this)' onmousemove='zoomHandler(event)'/>" +
                         "<canvas class = 'coveringCanvas' id = '" + id + "canvas'></canvas>" +
                     "</div>"
