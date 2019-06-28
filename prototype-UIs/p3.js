@@ -1,5 +1,4 @@
 let currentImageId = "";
-let currentImage;
 
 $(document).ready(function(){
     for(let i = 2020; i > 2000; i--){
@@ -14,10 +13,6 @@ $(document).ready(function(){
     }
     ctx = document.getElementById("zoomArea").getContext("2d");
 });
-
-function setImg(this){
-    currentImage = this;
-}
 
 function zoomHandler(e){    
     let factorX =  e.target.naturalWidth / e.target.width;
