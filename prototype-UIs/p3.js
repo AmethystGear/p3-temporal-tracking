@@ -21,7 +21,8 @@ $(document).ready(function(){
 });
 
 function zoomHandler(e){  
-    var image = $(e.target).children('img')[0];
+    var canvas = e.target;
+    var image = document.getElementById(canvas.id.replace("canvas", ""));
     //getting the x,y of the mouse  
     let factorX =  image.naturalWidth / image.width;
     let factorY = image.naturalHeight/ image.height;
@@ -30,7 +31,7 @@ function zoomHandler(e){
     var y = e.clientY - rect.top;
 
     //drawing visual indicator of zoom
-    let canvasCtx = document.getElementById(image.id + "canvas").getContext("2d");
+    let canvasCtx = canvas.getContext("2d");
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
     canvasCtx.globalAlpha = 0.2;
     canvasCtx.fillStyle = "blue";
