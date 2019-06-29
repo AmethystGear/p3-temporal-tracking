@@ -35,7 +35,7 @@ function zoomHandler(e){
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
     canvasCtx.globalAlpha = 0.2;
     canvasCtx.fillStyle = "blue";
-    ctx.rect(x, y, 100, 100);
+    canvasCtx.rect(x, y, 100, 100);
     canvasCtx.fill();
 
     //drawing zoomed image at the top
