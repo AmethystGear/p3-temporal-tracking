@@ -44,6 +44,8 @@ var zoomYWidth = 100;
 var zoomImage;
 var canvasImage;
 var boundingBox = null;
+var xZoomCropClick;
+var yZoomCropClick;
 
 function zoomHandler(e){  
 
@@ -66,11 +68,16 @@ function zoomHandler(e){
     var xCalculated = Math.clamp(x/image.width * canvas.width, zoomXWidthCalculated/2, canvas.width - zoomXWidthCalculated/2);
     var yCalculated = Math.clamp(y/200 * canvas.height, zoomYWidthCalculated/2, image.height - zoomYWidthCalculated);
 
+    
+    var xZoomCrop = (xCalculated * image.width/canvas.width - zoomXWidth/2)* factorX;
+    var yZoomCrop = (yCalculated * 200/canvas.height - zoomYWidth/2) * factorY;
     if(mouseDown){
         if(xClick === -1){
             xClick = x;
             yClick = y;
             zoomImage = zoomCtx.getImageData(0,0,zoomCanvas.width, zoomCanvas.height);
+            xZoomCropClick = xZoomCrop;
+            yZoomCropClick = yZoomCrop;
         }
         canvasCtx.fillStyle = "yellow";
         var diffX = x - xClick;
@@ -82,13 +89,12 @@ function zoomHandler(e){
         zoomCtx.globalAlpha = 1.0;
         zoomCtx.putImageData(zoomImage, 0, 0);
         zoomCtx.globalAlpha = 0.2;
-        zoomCtx.fillRect(zoomCanvas.width/2, zoomCanvas.height/2, (diffX) / zoomXWidth * zoomCanvas.width, (diffY) /zoomYWidth* zoomCanvas.height);
-        boundingBox = {x: xClick, y: yClick, width: diffX, height: diffY};
+        let box = {x: xClick, y: yClick, width: diffX, height: diffY};
+        zoomCtx.fillRect((box.x - (xZoomCropClick/factorX)) / zoomXWidth * zoomCanvas.width, (box.y - (yZoomCropClick/factorY)) /zoomYWidth* zoomCanvas.height, (diffX) / zoomXWidth * zoomCanvas.width, (diffY) /zoomYWidth* zoomCanvas.height);
+        boundingBox = box;
         return;
     }
 
-    var xZoomCrop = (xCalculated * image.width/canvas.width - zoomXWidth/2)* factorX;
-    var yZoomCrop = (yCalculated * 200/canvas.height - zoomYWidth/2) * factorY;
     zoomCtx.globalAlpha = 1.0;
     //drawing zoomed image at the top
     zoomCtx.drawImage(image, xZoomCrop, yZoomCrop, zoomXWidth * factorX, zoomYWidth * factorY, 0, 0, zoomCanvas.width, zoomCanvas.height);
