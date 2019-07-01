@@ -66,7 +66,7 @@ function zoomHandler(e){
     var zoomXWidthCalculated = zoomXWidth/image.width * canvas.width;
     var zoomYWidthCalculated = zoomYWidth/200 * canvas.height;
     var xCalculated = Math.clamp(x/image.width * canvas.width, zoomXWidthCalculated/2, canvas.width - zoomXWidthCalculated/2);
-    var yCalculated = Math.clamp(y/200 * canvas.height, zoomYWidthCalculated/2, image.height - zoomYWidthCalculated);
+    var yCalculated = Math.clamp(y/image.height * canvas.height, zoomYWidthCalculated/2, image.height - zoomYWidthCalculated);
 
     
     var xZoomCrop = (xCalculated * image.width/canvas.width - zoomXWidth/2)* factorX;
@@ -89,19 +89,31 @@ function zoomHandler(e){
         zoomCtx.globalAlpha = 1.0;
         zoomCtx.putImageData(zoomImage, 0, 0);
         zoomCtx.globalAlpha = 0.2;
+        zoomCtx.fillStyle = "yellow";
         let box = {x: xClick, y: yClick, width: diffX, height: diffY};
         zoomCtx.fillRect((box.x - (xZoomCropClick/factorX)) / zoomXWidth * zoomCanvas.width, (box.y - (yZoomCropClick/factorY)) /zoomYWidth* zoomCanvas.height, (diffX) / zoomXWidth * zoomCanvas.width, (diffY) /zoomYWidth* zoomCanvas.height);
+        zoomCtx.globalAlpha = 1.0;
+        zoomCtx.fillStyle = "black";
+        zoomCtx.fillRect(-5 + (x - (xZoomCropClick/factorX)) / zoomXWidth * zoomCanvas.width, -5 + (y - (yZoomCropClick/factorY)) /zoomYWidth * zoomCanvas.height, 10, 10);
+        
         boundingBox = box;
         return;
     }
+
+
 
     zoomCtx.globalAlpha = 1.0;
     //drawing zoomed image at the top
     zoomCtx.drawImage(image, xZoomCrop, yZoomCrop, zoomXWidth * factorX, zoomYWidth * factorY, 0, 0, zoomCanvas.width, zoomCanvas.height);
     
+    
+    zoomCtx.fillStyle = "black";
+    zoomCtx.fillRect(-5 + (x - (xZoomCrop/factorX)) / zoomXWidth * zoomCanvas.width, -5 + (y - (yZoomCrop/factorY)) /zoomYWidth * zoomCanvas.height, 10, 10);
+
 
     zoomCtx.globalAlpha = 0.2;
     canvasCtx.fillStyle = "yellow";
+    zoomCtx.fillStyle = "yellow";
     for(var i = 0; i < boundingBoxes.length; i++){
         var box = boundingBoxes[i];
         canvasCtx.fillRect(box.x/image.width * canvas.width, box.y/image.height * canvas.height, box.width/image.width * canvas.width, box.height/image.height * canvas.height);
