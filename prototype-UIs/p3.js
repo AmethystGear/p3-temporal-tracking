@@ -95,6 +95,9 @@ function zoomHandler(e){
         zoomCtx.globalAlpha = 1.0;
         zoomCtx.fillStyle = "black";
         zoomCtx.fillRect(-5 + (x - (xZoomCropClick/factorX)) / zoomXWidth * zoomCanvas.width, -5 + (y - (yZoomCropClick/factorY)) /zoomYWidth * zoomCanvas.height, 10, 10);
+
+        zoomCtx.fillStyle = "white";        
+        zoomCtx.fillRect(-3 + (x - (xZoomCropClick/factorX)) / zoomXWidth * zoomCanvas.width, -3 + (y - (yZoomCropClick/factorY)) /zoomYWidth * zoomCanvas.height, 6, 6);
         
         boundingBox = box;
         return;
@@ -106,11 +109,12 @@ function zoomHandler(e){
     //drawing zoomed image at the top
     zoomCtx.drawImage(image, xZoomCrop, yZoomCrop, zoomXWidth * factorX, zoomYWidth * factorY, 0, 0, zoomCanvas.width, zoomCanvas.height);
     
-    
     zoomCtx.fillStyle = "black";
     zoomCtx.fillRect(-5 + (x - (xZoomCrop/factorX)) / zoomXWidth * zoomCanvas.width, -5 + (y - (yZoomCrop/factorY)) /zoomYWidth * zoomCanvas.height, 10, 10);
 
-
+    zoomCtx.fillStyle = "white";        
+    zoomCtx.fillRect(-3 + (x - (xZoomCrop/factorX)) / zoomXWidth * zoomCanvas.width, -3 + (y - (yZoomCrop/factorY)) /zoomYWidth * zoomCanvas.height, 6, 6);
+   
     zoomCtx.globalAlpha = 0.2;
     canvasCtx.fillStyle = "yellow";
     zoomCtx.fillStyle = "yellow";
