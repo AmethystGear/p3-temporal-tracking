@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     var typeAndNum = $('#date-range').attr('get').split(':');
     var type = typeAndNum[0];
-    var num = parseInt(typeAndNum[1]);    
+    var num = parseInt(typeAndNum[1]);
 
     for(let i = firstBound; i != secondBound; i += diff){
         for(let i1 = 0; i1 < 2; i1++){            
@@ -15,7 +15,7 @@ $(document).ready(function(){
             currentImageId = id;
             let source = "..\\temporal-tracking-photos\\" + id + ".png";
             let image = 
-                    "<div class = 'canvas-image-container' style = 'max-width: 100%; position:relative;' onmousemove='mouseMove(event)'>" + 
+                    "<div class = 'canvas-image-container' style = 'max-width: 100%; padding-bottom:17%; position:relative;' onmousemove='mouseMove(event)'>" + 
                         "<img class = 'coveredImage'  id = '" + id + "' src= '" + source + "' onerror='deleteSelf(this)'/>" +
                         "<canvas class = 'coveringCanvas' id = '" + id + "canvas'></canvas>" +
                     "</div>"

@@ -36,11 +36,13 @@ function mouseMove(e){
 }
 
 function zoomHandler(e){
+
     var canvas = e.target;
     var image = document.getElementById(canvas.id.replace("canvas", ""));
     //getting the x,y of the mouse  
     let factorX =  image.naturalWidth / image.width;
     let factorY = image.naturalHeight/ image.height;
+    
     var rect = canvas.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
@@ -51,13 +53,13 @@ function zoomHandler(e){
     canvasCtx.globalAlpha = 0.2;
 
     var zoomXWidthCalculated = zoomXWidth/image.width * canvas.width;
-    var zoomYWidthCalculated = zoomYWidth/200 * canvas.height;
+    var zoomYWidthCalculated = zoomYWidth/image.height * canvas.height;
     var xCalculated = Math.clamp(x/image.width * canvas.width, zoomXWidthCalculated/2, canvas.width - zoomXWidthCalculated/2);
     var yCalculated = Math.clamp(y/image.height * canvas.height, zoomYWidthCalculated/2, image.height - zoomYWidthCalculated);
 
     
     var xZoomCrop = (xCalculated * image.width/canvas.width - zoomXWidth/2)* factorX;
-    var yZoomCrop = (yCalculated * 200/canvas.height - zoomYWidth/2) * factorY;
+    var yZoomCrop = (yCalculated * image.height/canvas.height - zoomYWidth/2) * factorY;
     if(mouseDown){
         if(xClick === -1){
             xClick = x;
@@ -71,7 +73,7 @@ function zoomHandler(e){
         var diffY = y - yClick;
 
 
-        canvasCtx.fillRect(xClick/image.width * canvas.width, yClick/200 * canvas.height, diffX/image.width * canvas.width, diffY/200 * canvas.height);
+        canvasCtx.fillRect(xClick/image.width * canvas.width, yClick/image.height * canvas.height, diffX/image.width * canvas.width, diffY/image.height * canvas.height);
         zoomCtx.clearRect(0,0, zoomCanvas.width, zoomCanvas.height);
         zoomCtx.globalAlpha = 1.0;
         zoomCtx.putImageData(zoomImage, 0, 0);
