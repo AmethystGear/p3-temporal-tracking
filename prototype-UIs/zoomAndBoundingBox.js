@@ -65,6 +65,7 @@ function zoomHandler(e){
             xClick = x;
             yClick = y;
             zoomImage = zoomCtx.getImageData(0,0,zoomCanvas.width, zoomCanvas.height);
+            zoomImage.crossOrigin = "Anonymous";
             xZoomCropClick = xZoomCrop;
             yZoomCropClick = yZoomCrop;
         }
