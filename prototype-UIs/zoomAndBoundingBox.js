@@ -19,15 +19,19 @@ document.body.onmouseup = function() {
   xClick = -1;
   yClick = -1;
   boundingBoxes.push(boundingBox);  
-  sessionStorage.setItem('boxes', JSON.stringify(boundingBoxes));
+  naturalBoundingBoxes.push(naturalBoundingBox);
+  sessionStorage.setItem('boxes', JSON.stringify(naturalBoundingBoxes));
   zoomHandler(mostRecentMouseEvent);
 }
+
+var naturalBoundingBoxes = [];
 
 var zoomXWidth = 160;
 var zoomImage;
 var canvasImage;
 var mostRecentMouseEvent;
 var boundingBox = null;
+var naturalBoundingBox = null;
 var xZoomCropClick;
 var yZoomCropClick;
 
@@ -74,6 +78,15 @@ function zoomHandler(e){
         canvasCtx.fillStyle = "yellow";
         var diffX = x - xClick;
         var diffY = y - yClick;
+
+        var xNatural = xClick / image.width * image.naturalWidth;
+        var yNatural = yClick / image.height * image.naturalHeight;
+        var naturalDiffX = diffX / image.width * image.naturalWidth;
+        var naturalDiffY = diffY / image.height * image.naturalHeight;
+
+        let naturalBox = {x: xNatural, y: yNatural, width: naturalDiffX, height: naturalDiffY};
+        naturalBoundingBox = naturalBox;
+
 
 
         canvasCtx.fillRect(xClick/image.width * canvas.width, yClick/image.height * canvas.height, diffX/image.width * canvas.width, diffY/image.height * canvas.height);
