@@ -18,6 +18,7 @@ $(document).ready(function(){
     ctx.globalAlpha = 0.2;
     ctx.fillStyle = "yellow";
     for(var i = 0; i < boundingBoxes.length; i++){
+        console.log(boundingBoxes[i]);
         ctx.fillRect(boundingBoxes[i].x, boundingBoxes[i].y, boundingBoxes[i].width, boundingBoxes[i].height);
         if(boundingBoxes[i].y < highest || highest == -1){
             highest = boundingBoxes[i].y;
@@ -28,6 +29,6 @@ $(document).ready(function(){
     }
 
     for(var i = 0; i < images.length; i++){        
-        ctx.drawImage(images[i], 0, highest,images[i].width, (lowest - highest), 0, (lowest - highest) * i, window.innerWidth, (lowest - highest));
+        ctx.drawImage(images[i], 0, highest,images[i].width, (lowest - highest), 0, (lowest - highest) * i, window.innerWidth, window.innerWidth * 768/4096 * (lowest - highest));
     }
 });
