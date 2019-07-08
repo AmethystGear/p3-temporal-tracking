@@ -29,6 +29,6 @@ $(document).ready(function(){
     }
 
     for(var i = 0; i < images.length; i++){        
-        ctx.drawImage(images[i], 0, highest,images[i].width, (lowest - highest), 0, (lowest - highest) * i, window.innerWidth, window.innerWidth * 768/4096 * (lowest - highest));
+        ctx.drawImage(images[i], 0, highest,images[i].width, (lowest - highest), 0, 0, 100, 100);
     }
 });
