@@ -22,7 +22,6 @@ document.body.onmouseup = function() {
 }
 
 var zoomXWidth = 100;
-var zoomYWidth = 100;
 var zoomImage;
 var canvasImage;
 var mostRecentMouseEvent;
@@ -38,6 +37,7 @@ function mouseMove(e){
 function zoomHandler(e){
 
     var canvas = e.target;
+    var zoomYWidth = zoomXWidth * canvas.height/canvas.width;
     var image = document.getElementById(canvas.id.replace("canvas", ""));
     //getting the x,y of the mouse  
     let factorX =  image.naturalWidth / image.width;

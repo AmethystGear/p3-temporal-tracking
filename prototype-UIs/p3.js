@@ -23,32 +23,7 @@ $(document).ready(function(){
             $("#body").append(image);
         }
     }
-
-    // Handle the deltion of the photos after the invalid photos get deleted.
-    setTimeout(100, handlePhotos(type, num));
 });
-
-// Enables us to only display the first or last 'num' photos, or display all photos. 
-function handlePhotos(type, num){
-    if(type === "all"){
-        return;
-    }
-    var numCanvasImageContainers = $('.canvas-image-container').length;
-    if(type === "first"){
-        $('.canvas-image-container').each(function(i, obj){
-            if(i >= num){
-                obj.remove();
-            }
-        });
-    }
-    if(type === "last"){
-        $('.canvas-image-container').each(function(i, obj){
-            if(i < numCanvasImageContainers - num){
-                obj.remove();
-            }
-        });
-    }
-}
 
 function deleteSelf(_this){
     _this.parentNode.remove();
