@@ -9,7 +9,7 @@ $(document).ready(function(){
     boundingBoxes = JSON.parse(sessionStorage.getItem('boxes'));
     for(var i = 0; i < paths.length; i++){
         let source = "..\\temporal-tracking-photos\\" + paths[i] + ".png";
-        var myImage = new Image(window.width, "auto");
+        var myImage = new Image(4096, 768);
         myImage.src = source;
         images.push(myImage);
     }
@@ -24,8 +24,7 @@ $(document).ready(function(){
         }
     }
 
-    for(var i = 0; i < images.length; i++){
-        //ctx.drawImage(images[i], 0, 0);
-        ctx.drawImage(images[i], 0, highest,images[i].width, (lowest - highest), 0, (lowest - highest) * i, images[i].width, (lowest - highest), 0, (lowest - highest));
+    for(var i = 0; i < images.length; i++){        
+        ctx.drawImage(images[i], 0, highest,images[i].width, (lowest - highest), 0, (lowest - highest) * i, images[i].width, (lowest - highest));
     }
 });
