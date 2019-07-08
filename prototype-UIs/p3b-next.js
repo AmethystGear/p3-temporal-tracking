@@ -15,7 +15,10 @@ $(document).ready(function(){
     }
     var highest = -1;
     var lowest = -1;
+    ctx.globalAlpha = 0.2;
+    ctx.fillStyle = "yellow";
     for(var i = 0; i < boundingBoxes.length; i++){
+        ctx.fillRect(boundingBoxes[i].x, boundingBoxes[i].y, boundingBoxes[i].width, boundingBoxes[i].height);
         if(boundingBoxes[i].y < highest || highest == -1){
             highest = boundingBoxes[i].y;
         }
