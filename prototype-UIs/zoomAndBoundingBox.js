@@ -3,6 +3,7 @@ let boundingBoxes = [];
 $(document).ready(function(){
     zoomCanvas = document.getElementById("zoomArea");
     zoomCtx = zoomCanvas.getContext("2d");
+    sessionStorage.setItem('boxes', '');
 });
 
 let zoomCtx;
@@ -17,7 +18,8 @@ document.body.onmouseup = function() {
   --mouseDown;
   xClick = -1;
   yClick = -1;
-  boundingBoxes.push(boundingBox);
+  boundingBoxes.push(boundingBox);  
+  sessionStorage.setItem('boxes', JSON.stringify(boundingBoxes));
   zoomHandler(mostRecentMouseEvent);
 }
 
@@ -37,7 +39,7 @@ function mouseMove(e){
 function zoomHandler(e){
 
     var canvas = e.target;
-    var zoomYWidth = zoomXWidth * canvas.height/canvas.width;
+    var zoomYWidth = zoomXWidth * zoomCanvas.height/zoomCanvas.width;
     var image = document.getElementById(canvas.id.replace("canvas", ""));
     //getting the x,y of the mouse  
     let factorX =  image.naturalWidth / image.width;

@@ -4,10 +4,6 @@ $(document).ready(function(){
     var secondBound =  parseInt(dateRange[1]);
     var diff = (secondBound - firstBound) / Math.abs(secondBound - firstBound);
 
-    var typeAndNum = $('#date-range').attr('get').split(':');
-    var type = typeAndNum[0];
-    var num = parseInt(typeAndNum[1]);
-
     for(let i = firstBound; i != secondBound; i += diff){
         for(let i1 = 0; i1 < 2; i1++){            
             //check for the b as well.           
