@@ -21,7 +21,7 @@ document.body.onmouseup = function() {
   zoomHandler(mostRecentMouseEvent);
 }
 
-var zoomXWidth = 100;
+var zoomXWidth = 160;
 var zoomImage;
 var canvasImage;
 var mostRecentMouseEvent;
