@@ -9,7 +9,7 @@ $(document).ready(function(){
     boundingBoxes = JSON.parse(sessionStorage.getItem('boxes'));
     for(var i = 0; i < paths.length; i++){
         let source = "..\\temporal-tracking-photos\\" + paths[i] + ".png";
-        var myImage = new Image();
+        var myImage = new Image(window.width, "auto");
         myImage.src = source;
         images.push(myImage);
     }
