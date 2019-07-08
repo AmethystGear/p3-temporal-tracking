@@ -25,7 +25,7 @@ $(document).ready(function(){
     }
 
     for(var i = 0; i < images.length; i++){
-        ctx.drawImage(images[i]);
+        ctx.drawImage(images[i], 0, 0);
         ctx.drawImage(images[i], 0, highest,images[i].width, (lowest - highest), 0, (lowest - highest) * i, images[i].width, (lowest - highest), 0, (lowest - highest));
     }
 });
