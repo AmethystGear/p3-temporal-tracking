@@ -48,7 +48,7 @@ $(document).ready(function(){
         let source = images[i].source;
         let image = 
                 "<div class = 'canvas-image-container' style = 'max-width: 100%; padding-bottom:17%; position:relative;' onmousemove='mouseMove(event)'>" + 
-                    "<img class = 'coveredImage'  id = '" + id + "' src= '" + source + "/>" +
+                    "<img class = 'coveredImage'  id = '" + id + "' src= '" + source + "'/>" +
                     "<canvas class = 'coveringCanvas' id = '" + id + "canvas'></canvas>" +
                 "</div>"
         
