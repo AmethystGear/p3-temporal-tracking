@@ -79,10 +79,10 @@ function zoomHandler(e){
         var diffX = x - xClick;
         var diffY = y - yClick;
 
-        var xNatural = xClick / canvas.width * image.naturalWidth;
-        var yNatural = yClick / canvas.height * image.naturalHeight;
-        var naturalDiffX = diffX / canvas.width * image.naturalWidth;
-        var naturalDiffY = diffY / canvas.height * image.naturalHeight;
+        var xNatural = xClick / image.width * image.naturalWidth;
+        var yNatural = yClick / image.height * image.naturalHeight;
+        var naturalDiffX = diffX / image.width * image.naturalWidth;
+        var naturalDiffY = diffY / image.height * image.naturalHeight;
 
         let naturalBox = {x: xNatural, y: yNatural, width: naturalDiffX, height: naturalDiffY};
         naturalBoundingBox = naturalBox;
@@ -107,7 +107,7 @@ function zoomHandler(e){
     }
 
 
-    
+
     zoomCtx.globalAlpha = 1.0;
     //drawing zoomed image at the top
     zoomCtx.drawImage(image, xZoomCrop, yZoomCrop, zoomXWidth * factorX, zoomYWidth * factorY, 0, 0, zoomCanvas.width, zoomCanvas.height);
