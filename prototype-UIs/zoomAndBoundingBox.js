@@ -107,7 +107,7 @@ function zoomHandler(e){
     }
 
 
-
+    
     zoomCtx.globalAlpha = 1.0;
     //drawing zoomed image at the top
     zoomCtx.drawImage(image, xZoomCrop, yZoomCrop, zoomXWidth * factorX, zoomYWidth * factorY, 0, 0, zoomCanvas.width, zoomCanvas.height);
