@@ -36,7 +36,7 @@ $(document).ready(function(){
         let source = "..\\temporal-tracking-photos\\" + paths[i] + ".png";
         var myImage = new Image(4096, 768);
         myImage.src = source;
-        ctx.drawImage(images[i], 0, highest, 4096, lowest-highest, 0, 0, canvas.width, lowest-highest);
+        ctx.drawImage(myImage, 0, highest, 4096, lowest-highest, 0, 0, canvas.width, lowest-highest);
         var croppedImage = imagedataToImage(ctx.getImageData(0, 0, canvas.width, lowest - highest));
         images.push(croppedImage);
     }
