@@ -33,6 +33,6 @@ $(document).ready(function(){
 
     ctx.globalAlpha = 1.0;
     for(var i = 0; i < images.length; i++){
-        ctx.drawImage(images[i], 0, highest, 4096, lowest-highest, 0, (lowest-highest)/768 * canvas.height * i, canvas.width, (lowest-highest)/768 * canvas.height);
+        ctx.drawImage(images[i], 0, highest, 4096, lowest-highest, 0, (lowest-highest) * i, canvas.width, lowest-highest);
     }
 });
