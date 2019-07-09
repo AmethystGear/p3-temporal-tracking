@@ -41,8 +41,6 @@ $(document).ready(function(){
         images.push(croppedImage);
     }
 
-    canvas.remove();
-
     for(var i = 0; i < images.length; i++){
         id = paths[i];
         let source = images[i].source;
