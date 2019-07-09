@@ -87,8 +87,6 @@ function zoomHandler(e){
         let naturalBox = {x: xNatural, y: yNatural, width: naturalDiffX, height: naturalDiffY};
         naturalBoundingBox = naturalBox;
 
-
-
         canvasCtx.fillRect(xClick/image.width * canvas.width, yClick/image.height * canvas.height, diffX/image.width * canvas.width, diffY/image.height * canvas.height);
         zoomCtx.clearRect(0,0, zoomCanvas.width, zoomCanvas.height);
         zoomCtx.globalAlpha = 1.0;
