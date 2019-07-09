@@ -30,6 +30,9 @@ $(document).ready(function(){
         }
     }
 
+    highest -= 20;
+    lowest += 20;
+
 
     ctx.globalAlpha = 1.0;
     for(var i = 0; i < images.length; i++){
