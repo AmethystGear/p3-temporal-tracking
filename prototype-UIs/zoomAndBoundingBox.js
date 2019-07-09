@@ -46,8 +46,8 @@ function zoomHandler(e){
     var zoomYWidth = zoomXWidth * zoomCanvas.height/zoomCanvas.width;
     var image = document.getElementById(canvas.id.replace("canvas", ""));
     //getting the x,y of the mouse  
-    let factorX =  image.naturalWidth / image.width;
-    let factorY = image.naturalHeight/ image.height;
+    let factorX =  image.naturalWidth/image.width;
+    let factorY = image.naturalHeight/image.height;
     
     var rect = canvas.getBoundingClientRect();
     var x = e.clientX - rect.left;
@@ -81,8 +81,8 @@ function zoomHandler(e){
 
         var xNatural = xClick / canvas.width * image.naturalWidth;
         var yNatural = yClick / canvas.height * image.naturalHeight;
-        var naturalDiffX = diffX / .width * image.naturalWidth;
-        var naturalDiffY = diffY / image.height * image.naturalHeight;
+        var naturalDiffX = diffX / canvas.width * image.naturalWidth;
+        var naturalDiffY = diffY / canvas.height * image.naturalHeight;
 
         let naturalBox = {x: xNatural, y: yNatural, width: naturalDiffX, height: naturalDiffY};
         naturalBoundingBox = naturalBox;
