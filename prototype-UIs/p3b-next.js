@@ -43,10 +43,9 @@ $(document).ready(function(){
 
     for(var i = 0; i < images.length; i++){
         id = paths[i];
-        let source = images[i].source;
         let image = 
                 "<div class = 'canvas-image-container' style = 'max-width: 100%; padding-bottom:17%; position:relative;' onmousemove='mouseMove(event)'>" + 
-                    "<img class = 'coveredImage'  id = '" + id + "' src= '" + source + "'/>" +
+                    "<img class = 'coveredImage'  id = '" + id + "' src= '" + images[i].source + "'/>" +
                     "<canvas class = 'coveringCanvas' id = '" + id + "canvas'></canvas>" +
                 "</div>"
         
@@ -60,8 +59,5 @@ function imagedataToImage(imagedata) {
     canvas.width = imagedata.width;
     canvas.height = imagedata.height;
     ctx.putImageData(imagedata, 0, 0);
-
-    var image = new Image();
-    image.src = canvas.toDataURL();
-    return image;
+    return canvas.toDataURL();
 }
