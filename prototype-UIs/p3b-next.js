@@ -1,20 +1,17 @@
-var canvas;
-var ctx;
-var boundingBoxes;
-var paths = ["2017b", "2017", "2016", "2015b", "2015", "2014", "2011", "2008", "2007"];
-var images = [];
+
 $(document).ready(function(){
+    let canvas;
+    let ctx;
+    let boundingBoxes;
+    let paths = ["2017b", "2017", "2016", "2015b", "2015", "2014", "2011", "2008", "2007"];
+    let images = [];
+
     canvas = document.getElementById("c");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     ctx = canvas.getContext("2d");
     boundingBoxes = JSON.parse(sessionStorage.getItem('boxes'));
-    for(var i = 0; i < paths.length; i++){
-        let source = "..\\temporal-tracking-photos\\" + paths[i] + ".png";
-        var myImage = new Image(4096, 768);
-        myImage.src = source;
-        images.push(myImage);
-    }
+
     var highest = -1;
     var lowest = -1;
     ctx.globalAlpha = 0.2;
@@ -30,12 +27,44 @@ $(document).ready(function(){
         }
     }
 
+
     highest -= 20;
     lowest += 20;
-
-
+    
     ctx.globalAlpha = 1.0;
+    for(var i = 0; i < paths.length; i++){
+        let source = "..\\temporal-tracking-photos\\" + paths[i] + ".png";
+        var myImage = new Image(4096, 768);
+        myImage.src = source;
+        ctx.drawImage(images[i], 0, highest, 4096, lowest-highest, 0, 0, canvas.width, lowest-highest);
+        var croppedImage = imagedataToImage(ctx.getImageData(0, 0, canvas.width, lowest - highest));
+        images.push(croppedImage);
+    }
+
+    canvas.remove();
+
     for(var i = 0; i < images.length; i++){
-        ctx.drawImage(images[i], 0, highest, 4096, lowest-highest, 0, (lowest-highest) * i, canvas.width, lowest-highest);
+        id = paths[i];
+        let source = images[i].source;
+        let image = 
+                "<div class = 'canvas-image-container' style = 'max-width: 100%; padding-bottom:17%; position:relative;' onmousemove='mouseMove(event)'>" + 
+                    "<img class = 'coveredImage'  id = '" + id + "' src= '" + source + "' onerror='deleteSelf(this)'/>" +
+                    "<canvas class = 'coveringCanvas' id = '" + id + "canvas'></canvas>" +
+                "</div>"
+        
+        $("#body").append(image);
     }
 });
+
+function imagedataToImage(imagedata) {
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = imagedata.width;
+    canvas.height = imagedata.height;
+    ctx.putImageData(imagedata, 0, 0);
+
+    var image = new Image();
+    image.src = canvas.toDataURL();
+    canvas.remove();
+    return image;
+}
