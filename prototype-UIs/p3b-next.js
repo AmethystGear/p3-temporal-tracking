@@ -31,6 +31,6 @@ $(document).ready(function(){
 
     ctx.globalAlpha = 1.0;
     for(var i = 0; i < images.length; i++){        
-        ctx.drawImage(images[i], 0, 0, 4096, lowest-highest, 0, 100 * i, 100, 100);
+        ctx.drawImage(images[i], 0, 0, 4096, lowest-highest, 0, 50 * i, 1000, lowest-highest);
     }
 });
