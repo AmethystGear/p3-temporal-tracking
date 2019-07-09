@@ -5,6 +5,8 @@ var paths = ["2017b", "2017", "2016", "2015b", "2015", "2014", "2011", "2008", "
 var images = [];
 $(document).ready(function(){
     canvas = document.getElementById("c");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     ctx = canvas.getContext("2d");
     boundingBoxes = JSON.parse(sessionStorage.getItem('boxes'));
     for(var i = 0; i < paths.length; i++){
