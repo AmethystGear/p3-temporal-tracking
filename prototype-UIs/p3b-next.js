@@ -65,6 +65,5 @@ function imagedataToImage(imagedata) {
 
     var image = new Image();
     image.src = canvas.toDataURL();
-    canvas.remove();
     return image;
 }
