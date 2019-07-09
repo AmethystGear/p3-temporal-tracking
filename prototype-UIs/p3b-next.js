@@ -1,7 +1,7 @@
 var canvas;
 var ctx;
 var boundingBoxes;
-var paths = ["2017b", "2017", "2016", "2015b", "2015", "2014", "2011", "2008", "2007"];
+var paths = ["2018", "2017b", "2017", "2016", "2015b", "2015", "2014", "2011", "2008", "2007"];
 var images = [];
 $(document).ready(function(){
     canvas = document.getElementById("c");
