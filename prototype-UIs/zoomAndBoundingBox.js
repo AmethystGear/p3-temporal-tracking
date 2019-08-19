@@ -3,6 +3,7 @@ let boundingBoxes = [];
 $(document).ready(function(){
     zoomCanvas = document.getElementById("zoomArea");
     zoomCtx = zoomCanvas.getContext("2d");
+    sessionStorage.setItem('boxes', '');
 });
 
 let zoomCtx;
@@ -17,16 +18,20 @@ document.body.onmouseup = function() {
   --mouseDown;
   xClick = -1;
   yClick = -1;
-  boundingBoxes.push(boundingBox);
+  boundingBoxes.push(boundingBox);  
+  naturalBoundingBoxes.push(naturalBoundingBox);
+  sessionStorage.setItem('boxes', JSON.stringify(naturalBoundingBoxes));
   zoomHandler(mostRecentMouseEvent);
 }
 
-var zoomXWidth = 100;
-var zoomYWidth = 100;
+var naturalBoundingBoxes = [];
+
+var zoomXWidth = 160;
 var zoomImage;
 var canvasImage;
 var mostRecentMouseEvent;
 var boundingBox = null;
+var naturalBoundingBox = null;
 var xZoomCropClick;
 var yZoomCropClick;
 
@@ -36,11 +41,14 @@ function mouseMove(e){
 }
 
 function zoomHandler(e){
+
     var canvas = e.target;
+    var zoomYWidth = zoomXWidth * zoomCanvas.height/zoomCanvas.width;
     var image = document.getElementById(canvas.id.replace("canvas", ""));
     //getting the x,y of the mouse  
-    let factorX =  image.naturalWidth / image.width;
-    let factorY = image.naturalHeight/ image.height;
+    let factorX =  image.naturalWidth/image.width;
+    let factorY = image.naturalHeight/image.height;
+    
     var rect = canvas.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
@@ -51,18 +59,19 @@ function zoomHandler(e){
     canvasCtx.globalAlpha = 0.2;
 
     var zoomXWidthCalculated = zoomXWidth/image.width * canvas.width;
-    var zoomYWidthCalculated = zoomYWidth/200 * canvas.height;
+    var zoomYWidthCalculated = zoomYWidth/image.height * canvas.height;
     var xCalculated = Math.clamp(x/image.width * canvas.width, zoomXWidthCalculated/2, canvas.width - zoomXWidthCalculated/2);
     var yCalculated = Math.clamp(y/image.height * canvas.height, zoomYWidthCalculated/2, image.height - zoomYWidthCalculated);
 
     
     var xZoomCrop = (xCalculated * image.width/canvas.width - zoomXWidth/2)* factorX;
-    var yZoomCrop = (yCalculated * 200/canvas.height - zoomYWidth/2) * factorY;
+    var yZoomCrop = (yCalculated * image.height/canvas.height - zoomYWidth/2) * factorY;
     if(mouseDown){
         if(xClick === -1){
             xClick = x;
             yClick = y;
             zoomImage = zoomCtx.getImageData(0,0,zoomCanvas.width, zoomCanvas.height);
+            zoomImage.crossOrigin = "Anonymous";
             xZoomCropClick = xZoomCrop;
             yZoomCropClick = yZoomCrop;
         }
@@ -70,8 +79,15 @@ function zoomHandler(e){
         var diffX = x - xClick;
         var diffY = y - yClick;
 
+        var xNatural = xClick / image.width * image.naturalWidth;
+        var yNatural = yClick / image.height * image.naturalHeight;
+        var naturalDiffX = diffX / image.width * image.naturalWidth;
+        var naturalDiffY = diffY / image.height * image.naturalHeight;
 
-        canvasCtx.fillRect(xClick/image.width * canvas.width, yClick/200 * canvas.height, diffX/image.width * canvas.width, diffY/200 * canvas.height);
+        let naturalBox = {x: xNatural, y: yNatural, width: naturalDiffX, height: naturalDiffY};
+        naturalBoundingBox = naturalBox;
+
+        canvasCtx.fillRect(xClick/image.width * canvas.width, yClick/image.height * canvas.height, diffX/image.width * canvas.width, diffY/image.height * canvas.height);
         zoomCtx.clearRect(0,0, zoomCanvas.width, zoomCanvas.height);
         zoomCtx.globalAlpha = 1.0;
         zoomCtx.putImageData(zoomImage, 0, 0);

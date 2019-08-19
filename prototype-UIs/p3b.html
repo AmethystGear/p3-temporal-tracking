@@ -3,27 +3,61 @@
     
 </head>
 
-<div id="date-range" search = "2020-2000" get = "first: 1" style="display: none"></div>
+<div id="date-range" search = "2020-2017" get = "all" style="display: none"></div>
+<div style="  margin: auto;
+width: 50%;">
+<canvas id="zoomArea" width="800" height="400" style="z-index:10;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
 
-<a href="prototype-UIs\p3b-next.html">p3b</a>
+
+</div>
+
+<body>
+<section class="container">
+    <div class="two" id = "body">
+
+    </div>
+</section>
+</body>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<a href="p3b-next.html">next</a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="p3.js"></script>
 <script src="zoomAndBoundingBox.js"></script>
 
 <style>
     .coveredImage {
         width:100%;
-        max-height:200px;
-        position:absolute;
+        height:100%;
         top:0px;
         left:0px;
+        position: absolute;
     }
     .coveringCanvas {
-        width:100%;
-        max-height:200px;
-        position:absolute;
+        width:100%;        
         top:0px;
         left:0px;
+        height:100%;
+        position: absolute;
     }
     
     .container {
@@ -31,12 +65,5 @@
         height: 200px;
         margin: auto;
         padding: 10px;
-    }
-    .one {
-        width: 400px;
-        float: left;
-    }
-    .two {
-        margin-left: 400px;
     }
     </style>
